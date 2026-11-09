@@ -1,5 +1,7 @@
 # Playbright
 
+Website: https://humayounbaig.github.io/PlayBright/ · Repo: https://github.com/HumayounBaig/PlayBright
+
 A dependency-free Chrome extension that reduces dark scrims placed over streaming video. It also includes a visual picker for hiding player controls or other distracting UI on a per-site basis.
 
 Write-up: [Removing a streaming overlay without blacking out the video](https://dev.to/humayounbaig/removing-a-streaming-overlay-without-blacking-out-the-video-21im)
@@ -37,9 +39,13 @@ After changing extension code, click the reload button on the extension card and
 
 The extension intentionally avoids hiding interactive controls automatically. Site-specific UI should be hidden with the picker.
 
+## Publishing to the Chrome Web Store
+
+The listing text, permission justifications and asset checklist are in [STORE_LISTING.md](STORE_LISTING.md). The website, privacy policy, terms and support pages are in [docs/](docs/) and are served by GitHub Pages. Upload `dist/playbright-1.3.0.zip`.
+
 ## Privacy
 
-Playbright runs locally. It does not collect analytics, inspect video content, or send browsing data to a server. Settings are stored in Chrome's local extension storage.
+Full policy: [docs/privacy.html](docs/privacy.html) (also at the website). Playbright runs locally. It does not collect analytics, inspect video content, or send browsing data to a server. Settings are stored in Chrome's local extension storage.
 
 ## Limitations
 

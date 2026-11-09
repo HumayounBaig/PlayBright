@@ -3,6 +3,7 @@
   "name": "Playbright - Remove dark overlays on streaming video",
   "version": "1.3.0",
   "description": "Turn down or remove the dark overlay on streaming video, and hide player UI you pick.",
+  "homepage_url": "https://humayounbaig.github.io/PlayBright/",
   "permissions": ["storage", "activeTab", "commands"],
   "host_permissions": ["<all_urls>"],
   "icons": {
