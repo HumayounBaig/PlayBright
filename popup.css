@@ -31,15 +31,9 @@ header {
 }
 
 .mark {
-  display: grid;
   width: 38px;
   height: 38px;
-  place-items: center;
-  border: 1px solid #4e6eff;
-  border-radius: 12px;
-  color: #91a3ff;
-  font-size: 24px;
-  background: rgba(78, 110, 255, 0.12);
+  border-radius: 10px;
 }
 
 h1 {
@@ -188,4 +182,80 @@ button:hover {
   margin-top: 8px;
   text-align: center;
   white-space: normal;
+}
+
+#plus {
+  border-top: 1px solid #282e3b;
+  padding-top: 14px;
+}
+
+#plus h2 {
+  margin: 0;
+  font-size: 13px;
+}
+
+#plusBadge {
+  border-radius: 99px;
+  padding: 2px 7px;
+  color: #c9d2ff;
+  background: rgba(97, 124, 255, 0.18);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+#shortcutHint {
+  margin: 6px 0 10px;
+  text-align: left;
+}
+
+#presetLocked p,
+#presetOpen p {
+  margin: 0 0 8px;
+  color: #8f98a9;
+  font-size: 11px;
+}
+
+#licenseForm,
+#presetForm {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+input[type="text"] {
+  min-width: 0;
+  border: 1px solid #343b4b;
+  border-radius: 9px;
+  padding: 8px 10px;
+  color: #f5f7fb;
+  background: #1b202b;
+  font: inherit;
+  font-size: 12px;
+}
+
+#presetList {
+  margin: 8px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+#presetList li {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 6px;
+  align-items: center;
+  margin-top: 6px;
+}
+
+#presetList span {
+  overflow: hidden;
+  font-size: 12px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#presetList button,
+#removeLicense {
+  padding: 6px 8px;
 }

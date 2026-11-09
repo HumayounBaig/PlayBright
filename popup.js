@@ -9,6 +9,17 @@ const statusDot = document.querySelector("#statusDot");
 const scan = document.querySelector("#scan");
 const picker = document.querySelector("#picker");
 const reset = document.querySelector("#reset");
+const plusBadge = document.querySelector("#plusBadge");
+const shortcutHint = document.querySelector("#shortcutHint");
+const presetLocked = document.querySelector("#presetLocked");
+const presetOpen = document.querySelector("#presetOpen");
+const buy = document.querySelector("#buy");
+const presetForm = document.querySelector("#presetForm");
+const presetName = document.querySelector("#presetName");
+const presetList = document.querySelector("#presetList");
+const removeLicense = document.querySelector("#removeLicense");
+
+let licensed = false;
 
 let tab;
 let host;
@@ -90,4 +101,99 @@ reset.addEventListener("click", async () => {
   showStatus("Hidden elements restored");
 });
 
-init();
+function renderPresets(presets) {
+  presetList.replaceChildren();
+  if (!presets.length) {
+    const empty = document.createElement("li");
+    empty.textContent = "No presets yet.";
+    presetList.append(empty);
+    return;
+  }
+
+  for (const preset of presets) {
+    const item = document.createElement("li");
+    const label = document.createElement("span");
+    label.textContent = `${preset.name} · ${preset.reduction}%`;
+    const apply = document.createElement("button");
+    apply.type = "button";
+    apply.textContent = "Apply";
+    apply.addEventListener("click", () => save({ reduction: preset.reduction }).then(() => {
+      reduction.value = preset.reduction;
+      reductionValue.value = `${preset.reduction}%`;
+    }));
+    const remove = document.createElement("button");
+    remove.type = "button";
+    remove.textContent = "Delete";
+    remove.addEventListener("click", async () => {
+      const next = presets.filter((entry) => entry.id !== preset.id);
+      await chrome.storage.local.set({ [PRESETS_KEY]: next });
+      renderPresets(next);
+    });
+    item.append(label, apply, remove);
+    presetList.append(item);
+  }
+}
+
+async function showPlus() {
+  licensed = Boolean(await currentLicense());
+  const commands = await chrome.commands.getAll();
+  const shortcut = commands.find((command) => command.name === "toggle-overlay")?.shortcut;
+  presetLocked.hidden = licensed;
+  presetOpen.hidden = !licensed;
+  plusBadge.textContent = licensed ? "Plus" : "$4.99";
+  shortcutHint.textContent = licensed
+    ? `Shortcut: ${shortcut || "choose one in chrome://extensions/shortcuts"}`
+    : "A keyboard shortcut is included with Plus.";
+
+  if (!licensed) return;
+  const stored = await chrome.storage.local.get(PRESETS_KEY);
+  renderPresets(stored[PRESETS_KEY] || []);
+}
+
+buy.addEventListener("click", async () => {
+  const response = await chrome.runtime.sendMessage({ type: "open-paddle-checkout" });
+  if (!response?.ok) {
+    showStatus(response?.error || "Could not open Paddle checkout", false);
+    return;
+  }
+  showStatus("Paddle checkout opened");
+});
+
+chrome.storage.onChanged.addListener((changes, area) => {
+  if (area === "local" && changes.license) showPlus().then(() => {
+    if (changes.license.newValue) showStatus("Playbright Plus is active");
+  });
+});
+
+presetForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  if (!licensed) return;
+  const stored = await chrome.storage.local.get(PRESETS_KEY);
+  const presets = stored[PRESETS_KEY] || [];
+  if (presets.length >= 8) {
+    showStatus("You can save 8 presets", false);
+    return;
+  }
+  const name = presetName.value.trim();
+  if (presets.some((preset) => preset.name.toLowerCase() === name.toLowerCase())) {
+    showStatus("A preset already uses that name", false);
+    return;
+  }
+  presets.push({ id: crypto.randomUUID(), name, reduction: Number(reduction.value) });
+  await chrome.storage.local.set({ [PRESETS_KEY]: presets });
+  presetName.value = "";
+  renderPresets(presets);
+  showStatus("Preset saved");
+});
+
+removeLicense.addEventListener("click", async () => {
+  try {
+    await deactivateLicense();
+    await showPlus();
+    showStatus("License removed from this browser");
+  } catch (error) {
+    showStatus(error.message || "Could not remove the license", false);
+  }
+});
+
+init().then(showPlus);

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Playbright Plus</title>
+    <script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
+  </head>
+  <body>
+    <p>Opening Paddle checkout…</p>
+    <script>
+      // Host this file on a domain approved in Paddle if hosted checkout is not enabled.
+      // Paste the public client-side token. Sandbox tokens start with test_.
+      const PADDLE_CLIENT_TOKEN = "";
+
+      const priceId = new URLSearchParams(location.search).get("price_id");
+      if (!PADDLE_CLIENT_TOKEN || !priceId) {
+        document.body.textContent = "Add the Paddle client token in paddle-checkout.html and open it with a price_id.";
+      } else {
+        if (PADDLE_CLIENT_TOKEN.startsWith("test_")) Paddle.Environment.set("sandbox");
+        Paddle.Initialize({ token: PADDLE_CLIENT_TOKEN });
+        Paddle.Checkout.open({ items: [{ priceId, quantity: 1 }] });
+      }
+    </script>
+  </body>
+</html>

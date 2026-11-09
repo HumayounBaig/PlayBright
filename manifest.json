@@ -1,13 +1,36 @@
 {
   "manifest_version": 3,
-  "name": "ClearView Overlay Control",
-  "version": "1.0.0",
-  "description": "Reduce or remove dark video overlays and hide distracting player UI.",
-  "permissions": ["storage", "activeTab"],
+  "name": "Playbright - Remove dark overlays on streaming video",
+  "version": "1.2.0",
+  "description": "Turn down or remove the dark overlay on streaming video, and hide player UI you pick.",
+  "permissions": ["storage", "activeTab", "commands", "scripting"],
   "host_permissions": ["<all_urls>"],
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
   "action": {
     "default_popup": "popup.html",
-    "default_title": "ClearView Overlay Control"
+    "default_title": "Playbright - Remove dark overlays on streaming video",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "commands": {
+    "toggle-overlay": {
+      "suggested_key": {
+        "default": "Alt+Shift+Y",
+        "mac": "Alt+Shift+Y"
+      },
+      "description": "Toggle Playbright on the current site"
+    }
   },
   "content_scripts": [
     {

@@ -1,0 +1,15 @@
+# Privacy policy
+
+Playbright runs on your device. It does not have an account, and it does not send browsing activity, video content, or page contents to a server.
+
+The extension stores these settings in Chrome's local extension storage, on this browser only:
+
+- whether Playbright is enabled for a site
+- the overlay reduction level for that site
+- selectors for player controls you chose to hide on that site
+
+Playbright reads the page structure around a video so it can find a dark overlay. It does not read the video picture, and it does not transmit that structure anywhere.
+
+If you buy Playbright Plus, checkout opens on Paddle. Paddle processes the payment. When Paddle tells this browser the payment finished, Playbright saves the Paddle transaction ID and the price ID in Chrome's local extension storage. Playbright does not send the sites you visit with that check, and it does not include a Paddle API key.
+
+You can remove the saved settings by resetting hidden elements in the popup, or by removing the extension.

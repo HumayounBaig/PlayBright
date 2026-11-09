@@ -163,15 +163,23 @@
       }
     }
 
-    // Pointer-transparent scrims do not appear in elementsFromPoint().
-    // Limit this fallback to overlay-like names near the player to avoid a full DOM scan.
+    // Pointer-transparent scrims are skipped by elementsFromPoint(), and Prime Video
+    // puts those gradients several levels above the player with hashed class names.
     let container = video.parentElement;
-    for (let depth = 0; container && depth < 3; depth += 1, container = container.parentElement) {
-      container
-        .querySelectorAll(
-          '[class*="scrim" i], [class*="shade" i], [class*="gradient" i], [class*="video-overlay" i], [id*="scrim" i], [id*="video-overlay" i]',
-        )
-        .forEach((element) => candidates.add(element));
+    for (
+      let depth = 0;
+      container && depth < 8 && container !== document.body && container !== document.documentElement;
+      depth += 1
+    ) {
+      for (const child of container.children) {
+        if (!(child instanceof HTMLElement) || ownsMedia(child, video)) continue;
+        candidates.add(child);
+        for (const grand of child.children) {
+          if (grand instanceof HTMLElement && !ownsMedia(grand, video)) candidates.add(grand);
+        }
+      }
+      const root = container.getRootNode?.();
+      container = container.parentElement || (root instanceof ShadowRoot ? root.host : null);
     }
 
     return [...candidates].filter((element) => isLikelyOverlay(element, video));
