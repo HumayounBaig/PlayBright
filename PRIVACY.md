@@ -10,6 +10,6 @@ The extension stores these settings in Chrome's local extension storage, on this
 
 Playbright reads the page structure around a video so it can find a dark overlay. It does not read the video picture, and it does not transmit that structure anywhere.
 
-If you buy Playbright Plus, checkout opens on Paddle. Paddle processes the payment. When Paddle tells this browser the payment finished, Playbright saves the Paddle transaction ID and the price ID in Chrome's local extension storage. Playbright does not send the sites you visit with that check, and it does not include a Paddle API key.
+The optional tip link opens an external page in a new tab, and the extension sends nothing to it.
 
 You can remove the saved settings by resetting hidden elements in the popup, or by removing the extension.

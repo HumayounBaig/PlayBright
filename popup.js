@@ -1,3 +1,5 @@
+const TIP_URL = ""; // paste your tip page URL (e.g. Buy Me a Coffee / Ko-fi) to show the link
+const PRESETS_KEY = "presets";
 const DEFAULTS = { enabled: true, reduction: 100, hiddenSelectors: [] };
 
 const enabled = document.querySelector("#enabled");
@@ -9,17 +11,11 @@ const statusDot = document.querySelector("#statusDot");
 const scan = document.querySelector("#scan");
 const picker = document.querySelector("#picker");
 const reset = document.querySelector("#reset");
-const plusBadge = document.querySelector("#plusBadge");
 const shortcutHint = document.querySelector("#shortcutHint");
-const presetLocked = document.querySelector("#presetLocked");
-const presetOpen = document.querySelector("#presetOpen");
-const buy = document.querySelector("#buy");
 const presetForm = document.querySelector("#presetForm");
 const presetName = document.querySelector("#presetName");
 const presetList = document.querySelector("#presetList");
-const removeLicense = document.querySelector("#removeLicense");
-
-let licensed = false;
+const tip = document.querySelector("#tip");
 
 let tab;
 let host;
@@ -134,40 +130,16 @@ function renderPresets(presets) {
   }
 }
 
-async function showPlus() {
-  licensed = Boolean(await currentLicense());
+async function showPresets() {
   const commands = await chrome.commands.getAll();
   const shortcut = commands.find((command) => command.name === "toggle-overlay")?.shortcut;
-  presetLocked.hidden = licensed;
-  presetOpen.hidden = !licensed;
-  plusBadge.textContent = licensed ? "Plus" : "$4.99";
-  shortcutHint.textContent = licensed
-    ? `Shortcut: ${shortcut || "choose one in chrome://extensions/shortcuts"}`
-    : "A keyboard shortcut is included with Plus.";
-
-  if (!licensed) return;
+  shortcutHint.textContent = `Shortcut: ${shortcut || "choose one in chrome://extensions/shortcuts"}`;
   const stored = await chrome.storage.local.get(PRESETS_KEY);
   renderPresets(stored[PRESETS_KEY] || []);
 }
 
-buy.addEventListener("click", async () => {
-  const response = await chrome.runtime.sendMessage({ type: "open-paddle-checkout" });
-  if (!response?.ok) {
-    showStatus(response?.error || "Could not open Paddle checkout", false);
-    return;
-  }
-  showStatus("Paddle checkout opened");
-});
-
-chrome.storage.onChanged.addListener((changes, area) => {
-  if (area === "local" && changes.license) showPlus().then(() => {
-    if (changes.license.newValue) showStatus("Playbright Plus is active");
-  });
-});
-
 presetForm.addEventListener("submit", async (event) => {
   event.preventDefault();
-  if (!licensed) return;
   const stored = await chrome.storage.local.get(PRESETS_KEY);
   const presets = stored[PRESETS_KEY] || [];
   if (presets.length >= 8) {
@@ -186,14 +158,9 @@ presetForm.addEventListener("submit", async (event) => {
   showStatus("Preset saved");
 });
 
-removeLicense.addEventListener("click", async () => {
-  try {
-    await deactivateLicense();
-    await showPlus();
-    showStatus("License removed from this browser");
-  } catch (error) {
-    showStatus(error.message || "Could not remove the license", false);
-  }
-});
+if (TIP_URL.startsWith("https://")) {
+  tip.querySelector("a").href = TIP_URL;
+  tip.hidden = false;
+}
 
-init().then(showPlus);
+init().then(showPresets);

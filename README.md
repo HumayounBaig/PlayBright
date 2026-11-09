@@ -11,21 +11,13 @@ Write-up: [Removing a streaming overlay without blacking out the video](https://
 - Per-site enable/disable and settings
 - Click-to-hide picker for specific player UI
 - Automatically rescans when single-page apps replace the player
+- Stays idle on pages without a video, so it costs nothing on regular sites
 - Restores every original inline style when disabled
-- Playbright Plus ($4.99 once): saved overlay presets and a keyboard shortcut
+- Saved overlay presets and an `Alt+Shift+Y` shortcut to toggle the current site (change it at `chrome://extensions/shortcuts`)
 
-## Playbright Plus
+## Support
 
-The slider, per-site switch, and UI picker stay free. Plus adds named presets and `Alt+Shift+Y` to toggle the current site. The shortcut can be changed at `chrome://extensions/shortcuts`.
-
-Paddle sells Plus and pays the seller. Pakistan is not on Paddle's unsupported-country list. Payouts are a monthly bank wire or Payoneer, and the dashboard minimum is $100. Set payout details before live checkout will run. A local bank account needs the account name, bank name, SWIFT/BIC, and IBAN.
-
-1. Create a Paddle account and a one-time $4.99 price. Copy the price ID (`pri_...`) and product ID (`pro_...`).
-2. In Paddle, open Checkout, then Hosted checkout, and copy the launch URL (`https://pay.paddle.io/checkout/hsc_...`). Live hosted checkout is turned on for approved mobile apps; a sandbox account can create the link for a test. If that screen is unavailable, host `paddle-checkout.html` on a domain approved under Website approval, paste the public client-side token into that file, and use the page URL instead.
-3. Paste the checkout URL, price ID, and product ID into `license.js`.
-4. Reload the extension. Buy opens Paddle, and Plus turns on in that browser when the payment finishes.
-
-Paddle's API key stays out of the extension, so a refund in the Paddle dashboard does not lock this browser by itself. Remove Plus from this browser with the button in the popup.
+Playbright is free. To show an optional tip link in the popup, set `TIP_URL` in `popup.js` to your tip page URL (https only).
 
 ## Install locally
 
