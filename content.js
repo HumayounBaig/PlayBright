@@ -8,6 +8,9 @@
   let settings = { ...DEFAULTS };
   let scanTimer;
   let pickerCleanup;
+  // Live collection, so checking it costs no extra query. Pages stay idle until a video appears.
+  const pageVideos = document.getElementsByTagName("video");
+  let active = false;
 
   function collectVideos(root, found) {
     if (!root?.querySelectorAll || found.length > 12) return;
@@ -247,9 +250,16 @@
     }
   }
 
+  // shortcut: a <video> that exists only inside a shadow root is missed until the user clicks
+  // Rescan (which calls scan() directly); add a shadow-aware probe if a real site needs it.
+  function needsScan() {
+    return active || pageVideos.length > 0 || settings.hiddenSelectors.length > 0;
+  }
+
   function scan() {
     restoreAdjusted();
     applyHiddenSelectors();
+    active = false; // only stays true while something is adjusted, so a removed player gets one more restoring scan
     if (!settings.enabled) return 0;
 
     for (const video of visibleVideos()) {
@@ -258,12 +268,15 @@
     }
 
     applyReduction();
+    active = adjusted.size > 0;
     return adjusted.size;
   }
 
   function scheduleScan() {
     clearTimeout(scanTimer);
-    scanTimer = setTimeout(scan, 350);
+    scanTimer = setTimeout(() => {
+      if (needsScan()) scan();
+    }, 350);
   }
 
   function stableSelector(element) {
@@ -352,7 +365,7 @@
 
   chrome.storage.local.get(hostKey).then((stored) => {
     settings = { ...DEFAULTS, ...(stored[hostKey] || {}) };
-    scan();
+    if (needsScan()) scan();
   });
 
   new MutationObserver(scheduleScan).observe(document.documentElement, {

@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Support - Playbright</title>
+<meta name="description" content="How to use Playbright, fix common problems, report issues and read the FAQ.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Playbright">
+<meta property="og:title" content="Support - Playbright">
+<meta property="og:description" content="How to use Playbright, fix common problems, report issues and read the FAQ.">
+<meta property="og:url" content="https://humayounbaig.github.io/PlayBright/support.html">
+<meta property="og:image" content="https://humayounbaig.github.io/PlayBright/icon128.png">
+<meta name="twitter:card" content="summary">
+<meta name="color-scheme" content="dark light">
+<link rel="icon" type="image/png" href="icon128.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;600&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="index.html"><img src="icon128.png" alt="" width="32" height="32">Playbright</a>
+<nav aria-label="Main"><ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="support.html" aria-current="page">Support</a></li>
+<li><a href="privacy.html">Privacy</a></li>
+<li><a href="terms.html">Terms</a></li>
+</ul></nav>
+</div></header>
+<main id="main"><div class="wrap">
+<h1>Support</h1>
+<h2>How to use it</h2>
+<ol>
+<li>Open a streaming site, start playback, then click the Playbright icon.</li>
+<li>Move <strong>Dark overlay reduction</strong> from <strong>Original</strong> toward <strong>Remove</strong>.</li>
+<li>Use the switch at the top of the popup to turn it on or off for the current site, or press <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>Y</kbd>.</li>
+<li>Type a name and click <strong>Save</strong> to keep the current level as a preset. You can keep up to 8.</li>
+<li>Click <strong>Pick UI to hide</strong>, then click a control or panel on the page. Press <kbd>Esc</kbd> to cancel.</li>
+<li>Click <strong>Reset hidden elements for this site</strong> to bring hidden UI back.</li>
+</ol>
+<h2>Troubleshooting</h2>
+<ul>
+<li><strong>Nothing happens.</strong> Start video playback first, then click <strong>Rescan overlays</strong>.</li>
+<li><strong>"Unavailable on this page".</strong> Chrome blocks extensions on internal pages such as <code>chrome://</code>.</li>
+<li><strong>A site stopped working.</strong> Sites change their player markup. Use <strong>Pick UI to hide</strong> for anything Playbright cannot identify.</li>
+<li><strong>After updating from source.</strong> Reload the extension at <code>chrome://extensions</code> and refresh the tab.</li>
+</ul>
+<h2>Report an issue</h2>
+<p>Open an issue at <a href="https://github.com/HumayounBaig/PlayBright/issues">github.com/HumayounBaig/PlayBright/issues</a>, or email <a href="mailto:Humayoun.mani@gmail.com">Humayoun.mani@gmail.com</a>. Please include the site and what you expected.</p>
+<h2>FAQ</h2>
+<details><summary>Is it free?</summary><p>Yes. An optional tip link may appear in the popup, but nothing is locked.</p></details>
+<details><summary>Does it collect data?</summary><p>No. Settings stay in your browser. See the <a href="privacy.html">privacy policy</a>.</p></details>
+<details><summary>Why does it need access to all sites?</summary><p>Overlays can appear on any streaming site. On pages with no video it only checks for one and applies elements you chose to hide; it does not scan for overlays.</p></details>
+<details><summary>Does it touch the video itself?</summary><p>No. It never reads or changes video pixels. It fades separate overlay elements and full-size gradient layers, and does not fade a container that holds the video.</p></details>
+<details><summary>Why doesn't it hide player buttons automatically?</summary><p>It avoids hiding interactive controls on purpose. Use the picker for the ones you want gone.</p></details>
+</div></main>
+<footer class="site"><div class="wrap">
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="support.html">Support</a></li>
+<li><a href="privacy.html">Privacy</a></li>
+<li><a href="terms.html">Terms</a></li>
+<li><a href="https://github.com/HumayounBaig/PlayBright">GitHub</a></li>
+</ul>
+<p>Playbright is free and made by <a href="https://humayounbaig.github.io">Humayoun Baig</a>. Not affiliated with any streaming service.</p>
+</div></footer>
+</body>
+</html>

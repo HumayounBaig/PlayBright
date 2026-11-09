@@ -1,5 +1,7 @@
 # Playbright
 
+Website: https://humayounbaig.github.io/PlayBright/ · Repo: https://github.com/HumayounBaig/PlayBright
+
 A dependency-free Chrome extension that reduces dark scrims placed over streaming video. It also includes a visual picker for hiding player controls or other distracting UI on a per-site basis.
 
 Write-up: [Removing a streaming overlay without blacking out the video](https://dev.to/humayounbaig/removing-a-streaming-overlay-without-blacking-out-the-video-21im)
@@ -11,21 +13,13 @@ Write-up: [Removing a streaming overlay without blacking out the video](https://
 - Per-site enable/disable and settings
 - Click-to-hide picker for specific player UI
 - Automatically rescans when single-page apps replace the player
+- On pages without a video it only does a light check for one after page changes, and applies elements you chose to hide on that site; it does not scan for overlays
 - Restores every original inline style when disabled
-- Playbright Plus ($4.99 once): saved overlay presets and a keyboard shortcut
+- Saved overlay presets and an `Alt+Shift+Y` shortcut to toggle the current site (change it at `chrome://extensions/shortcuts`)
 
-## Playbright Plus
+## Support
 
-The slider, per-site switch, and UI picker stay free. Plus adds named presets and `Alt+Shift+Y` to toggle the current site. The shortcut can be changed at `chrome://extensions/shortcuts`.
-
-Paddle sells Plus and pays the seller. Pakistan is not on Paddle's unsupported-country list. Payouts are a monthly bank wire or Payoneer, and the dashboard minimum is $100. Set payout details before live checkout will run. A local bank account needs the account name, bank name, SWIFT/BIC, and IBAN.
-
-1. Create a Paddle account and a one-time $4.99 price. Copy the price ID (`pri_...`) and product ID (`pro_...`).
-2. In Paddle, open Checkout, then Hosted checkout, and copy the launch URL (`https://pay.paddle.io/checkout/hsc_...`). Live hosted checkout is turned on for approved mobile apps; a sandbox account can create the link for a test. If that screen is unavailable, host `paddle-checkout.html` on a domain approved under Website approval, paste the public client-side token into that file, and use the page URL instead.
-3. Paste the checkout URL, price ID, and product ID into `license.js`.
-4. Reload the extension. Buy opens Paddle, and Plus turns on in that browser when the payment finishes.
-
-Paddle's API key stays out of the extension, so a refund in the Paddle dashboard does not lock this browser by itself. Remove Plus from this browser with the button in the popup.
+Playbright is free. To show an optional tip link in the popup, set `TIP_URL` in `popup.js` to your tip page URL (https only).
 
 ## Install locally
 
@@ -45,9 +39,13 @@ After changing extension code, click the reload button on the extension card and
 
 The extension intentionally avoids hiding interactive controls automatically. Site-specific UI should be hidden with the picker.
 
+## Publishing to the Chrome Web Store
+
+The listing text, permission justifications and asset checklist are in [STORE_LISTING.md](STORE_LISTING.md). The website, privacy policy, terms and support pages are in [docs/](docs/) and are served by GitHub Pages. Upload `dist/playbright-1.3.0.zip`.
+
 ## Privacy
 
-Playbright runs locally. It does not collect analytics, inspect video content, or send browsing data to a server. Settings are stored in Chrome's local extension storage.
+Full policy: [docs/privacy.html](docs/privacy.html) (also at the website). Playbright runs locally. It does not collect analytics, inspect video content, or send browsing data to a server. Settings are stored in Chrome's local extension storage.
 
 ## Limitations
 

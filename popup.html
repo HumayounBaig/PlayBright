@@ -34,24 +34,14 @@
         <button id="picker" type="button">Pick UI to hide</button>
       </section>
 
-      <section id="plus">
-        <div class="label-row">
-          <h2>Presets</h2>
-          <span id="plusBadge">$4.99</span>
-        </div>
+      <section id="presets">
+        <h2>Presets</h2>
         <p id="shortcutHint" class="hint"></p>
-        <div id="presetLocked">
-          <p>Save named overlay levels and toggle this site from the keyboard. Checkout opens on Paddle, and Plus turns on in this browser when the payment finishes.</p>
-          <button id="buy" type="button">Buy Playbright Plus</button>
-        </div>
-        <div id="presetOpen" hidden>
-          <form id="presetForm">
-            <input id="presetName" type="text" placeholder="Preset name" maxlength="24" required />
-            <button type="submit">Save</button>
-          </form>
-          <ul id="presetList"></ul>
-          <button id="removeLicense" class="text-button" type="button">Remove license on this browser</button>
-        </div>
+        <form id="presetForm">
+          <input id="presetName" type="text" placeholder="Preset name" maxlength="24" required />
+          <button type="submit">Save</button>
+        </form>
+        <ul id="presetList"></ul>
       </section>
 
       <section class="status-card">
@@ -60,9 +50,11 @@
       </section>
 
       <button id="reset" class="text-button" type="button">Reset hidden elements for this site</button>
+      <p id="tip" class="hint" hidden>
+        Playbright is free. If it helps, <a class="tip-link" target="_blank" rel="noopener">buy me a coffee ☕</a>
+      </p>
       <p class="hint">Tip: start video playback before rescanning. Press Esc to cancel the picker.</p>
     </main>
-    <script src="license.js"></script>
     <script src="popup.js"></script>
   </body>
 </html>
