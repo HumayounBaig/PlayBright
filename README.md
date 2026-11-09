@@ -13,7 +13,7 @@ Write-up: [Removing a streaming overlay without blacking out the video](https://
 - Per-site enable/disable and settings
 - Click-to-hide picker for specific player UI
 - Automatically rescans when single-page apps replace the player
-- Stays idle on pages without a video, so it costs nothing on regular sites
+- On pages without a video it only does a light check for one after page changes, and applies elements you chose to hide on that site; it does not scan for overlays
 - Restores every original inline style when disabled
 - Saved overlay presets and an `Alt+Shift+Y` shortcut to toggle the current site (change it at `chrome://extensions/shortcuts`)
 

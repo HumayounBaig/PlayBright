@@ -17,7 +17,7 @@ Playbright fades the dark overlays and scrims that streaming sites draw over vid
 - Alt+Shift+Y toggles the current site (change it at chrome://extensions/shortcuts)
 - Click-to-hide picker for player controls or panels you want gone, per site
 - Rescans automatically when single-page apps replace the player
-- Stays idle on pages without a video
+- On pages without a video, only a light check for one and your hidden elements; no overlay scanning
 - Restores every original style when disabled
 
 Free, with no account. It runs locally and collects no data. Settings are stored only in Chrome's local extension storage. It never reads video pixels.
@@ -37,7 +37,7 @@ Reduce or remove dark overlays on streaming video, and let the user hide chosen 
 ## Permission justifications
 
 - **storage**: Saves per-site settings (enabled, reduction level, selectors of elements the user hid) and the user's saved presets in chrome.storage.local.
-- **Host permissions (<all_urls>)**: The overlay can appear on any streaming site, so the content script must be able to run on any page to detect a video and fade overlay elements. It stays idle on pages with no video and sends no page data anywhere.
+- **Host permissions (<all_urls>)**: The overlay can appear on any streaming site, so the content script must be able to run on any page to detect a video and fade overlay elements. On pages with no video it only checks for one and applies elements the user chose to hide, and it sends no page data anywhere.
 
 ## Remote code
 

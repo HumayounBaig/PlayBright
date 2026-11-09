@@ -257,9 +257,9 @@
   }
 
   function scan() {
-    active = true; // once running, keep scanning so removed players get their styles restored
     restoreAdjusted();
     applyHiddenSelectors();
+    active = false; // only stays true while something is adjusted, so a removed player gets one more restoring scan
     if (!settings.enabled) return 0;
 
     for (const video of visibleVideos()) {
@@ -268,6 +268,7 @@
     }
 
     applyReduction();
+    active = adjusted.size > 0;
     return adjusted.size;
   }
 
