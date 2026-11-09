@@ -8,7 +8,7 @@ Summary:
 - Stored only in `chrome.storage.local` on this browser: per-site enabled state, reduction level and selectors of elements you hid, plus saved presets.
 - Reads page structure around videos to find overlays. It never reads video pixels.
 - The optional tip link opens an external page in a new tab. The extension sends nothing to it.
-- Permissions: `storage` (settings), `activeTab` (popup talks to the current tab), `commands` (keyboard shortcut), all-sites access (overlays can appear on any streaming site).
+- Permissions: `storage` (settings), all-sites access (overlays can appear on any streaming site).
 - Delete data by resetting hidden elements or deleting presets in the popup, or by removing the extension.
 
 Contact: Humayoun.mani@gmail.com

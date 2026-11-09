@@ -1,3 +1,6 @@
+// Clears the old Plus license key left by 1.2.0.
+chrome.runtime.onInstalled.addListener(() => chrome.storage.local.remove("license"));
+
 chrome.commands.onCommand.addListener(async (command) => {
   if (command !== "toggle-overlay") return;
 

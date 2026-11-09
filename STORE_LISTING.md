@@ -37,8 +37,6 @@ Reduce or remove dark overlays on streaming video, and let the user hide chosen 
 ## Permission justifications
 
 - **storage**: Saves per-site settings (enabled, reduction level, selectors of elements the user hid) and the user's saved presets in chrome.storage.local.
-- **activeTab**: Lets the popup send messages to the tab the user is viewing (apply settings, rescan, start the picker).
-- **commands**: Provides the Alt+Shift+Y keyboard shortcut that toggles Playbright on the current site.
 - **Host permissions (<all_urls>)**: The overlay can appear on any streaming site, so the content script must be able to run on any page to detect a video and fade overlay elements. It stays idle on pages with no video and sends no page data anywhere.
 
 ## Remote code
