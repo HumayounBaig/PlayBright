@@ -1,9 +1,9 @@
 :root {
-  --bg: #14110d; --surface: #1d1914; --border: #3a3329; --text: #ece6dc; --muted: #b8ae9c;
-  --accent: #e0a458; --on-accent: #14110d;
+  --bg: #111f3c; --surface: #18284a; --border: #2c3f6b; --text: #e8edff; --muted: #a9b6d9;
+  --accent: #7b9fff; --on-accent: #111f3c;
 }
 @media (prefers-color-scheme: light) {
-  :root { --bg: #fbf8f3; --surface: #f1ebe0; --border: #d6cbb8; --text: #231d14; --muted: #5c5243; --accent: #8a4f00; --on-accent: #ffffff; }
+  :root { --bg: #f5f7ff; --surface: #e9eeff; --border: #cdd6f3; --text: #111f3c; --muted: #4a5878; --accent: #2f4fbf; --on-accent: #ffffff; }
 }
 * { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
@@ -44,3 +44,16 @@ footer.site .wrap { padding-top: 1.5rem; padding-bottom: 2rem; }
 footer.site ul { list-style: none; display: flex; flex-wrap: wrap; gap: .25rem 1.25rem; padding: 0; margin: 0 0 .75rem; }
 footer.site a { color: var(--muted); }
 footer.site a:hover { color: var(--text); }
+.compare { margin: 2rem 0; max-width: 40rem; }
+.compare-box { --pos: 50%; position: relative; aspect-ratio: 16 / 9; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; background: var(--surface); }
+.compare-box:focus-within { outline: 3px solid var(--accent); outline-offset: 3px; }
+.compare-box .layer { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.compare-box .before { clip-path: inset(0 calc(100% - var(--pos)) 0 0); }
+.compare-box .tag { position: absolute; top: .5rem; padding: .1rem .55rem; border-radius: 999px; background: #111f3c; color: #e8edff; font-size: .8rem; font-weight: 600; }
+.compare-box .tag.b { left: .5rem; }
+.compare-box .tag.a { right: .5rem; }
+.compare-box .divider { position: absolute; top: 0; bottom: 0; left: var(--pos); width: 2px; margin-left: -1px; background: #fff; box-shadow: 0 0 0 1px rgba(17, 31, 60, .5); pointer-events: none; }
+.compare-box .divider::after { content: "\2194"; position: absolute; top: 50%; left: 50%; width: 2.2rem; height: 2.2rem; margin: -1.1rem 0 0 -1.1rem; border-radius: 50%; background: #7b9fff; color: #111f3c; display: grid; place-items: center; font-weight: 700; box-shadow: 0 0 0 2px #fff; }
+.compare-box input[type="range"] { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: ew-resize; }
+.compare figcaption { color: var(--muted); margin-top: .6rem; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
