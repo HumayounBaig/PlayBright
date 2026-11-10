@@ -13,6 +13,8 @@
 <meta property="og:image" content="https://humayounbaig.github.io/PlayBright/icon128.png">
 <meta name="twitter:card" content="summary">
 <meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#111f3c" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f5f7ff" media="(prefers-color-scheme: light)">
 <link rel="icon" type="image/png" href="icon128.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,6 +40,32 @@
 <a class="btn" href="https://github.com/HumayounBaig/PlayBright">Install</a>
 <p class="soon">Coming soon to the Chrome Web Store. Meanwhile, <a href="https://github.com/HumayounBaig/PlayBright">load it unpacked from GitHub</a>.</p>
 </div>
+<figure class="compare">
+<div class="compare-box">
+<svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute">
+<defs>
+<linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2b2d6e"/><stop offset=".6" stop-color="#e0759a"/><stop offset="1" stop-color="#f6b779"/></linearGradient>
+<linearGradient id="scrim" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#05070f" stop-opacity=".9"/><stop offset=".45" stop-color="#05070f" stop-opacity=".6"/><stop offset="1" stop-color="#05070f" stop-opacity=".92"/></linearGradient>
+<symbol id="scene" viewBox="0 0 320 180">
+<rect width="320" height="180" fill="url(#sky)"/>
+<circle cx="236" cy="58" r="20" fill="#fff4d6"/>
+<path d="M0 130 Q60 88 120 118 T240 112 T320 120 V180 H0Z" fill="#3b3a78"/>
+<path d="M0 150 Q80 118 160 142 T320 138 V180 H0Z" fill="#1d1d4a"/>
+<text x="22" y="62" fill="#fff" font-family="Fraunces,Georgia,serif" font-size="22" font-weight="700">Dusk Ridge</text>
+<text x="22" y="80" fill="#fff" font-family="Inter,sans-serif" font-size="9">A quiet evening in the hills</text>
+<rect x="16" y="162" width="288" height="4" rx="2" fill="#fff" fill-opacity=".35"/>
+<rect x="16" y="162" width="130" height="4" rx="2" fill="#7b9fff"/>
+</symbol>
+</defs>
+</svg>
+<svg class="layer after" viewBox="0 0 320 180" role="img" aria-label="A dusk landscape video frame with the dark scrim removed"><use href="#scene"/></svg>
+<svg class="layer before" viewBox="0 0 320 180" aria-hidden="true"><use href="#scene"/><rect width="320" height="180" fill="url(#scrim)"/></svg>
+<span class="tag b">Before</span><span class="tag a">After</span>
+<span class="divider"></span>
+<input type="range" min="0" max="100" value="50" aria-label="Drag to compare before and after" aria-valuetext="50% before, with the dark overlay; 50% after, cleared">
+</div>
+<figcaption>Playbright fades the dark scrim so you can see the picture, without touching the video itself. Illustration only.</figcaption>
+</figure>
 <h2>What it does</h2>
 <ul class="grid">
 <li><strong>Fades dark overlays</strong><span>Finds dark, video-sized scrims and gradient layers on streaming video and turns them down.</span></li>
@@ -66,5 +94,6 @@
 </ul>
 <p>Playbright is free and made by <a href="https://humayounbaig.github.io">Humayoun Baig</a>. Not affiliated with any streaming service.</p>
 </div></footer>
+<script src="compare.js" defer></script>
 </body>
 </html>
